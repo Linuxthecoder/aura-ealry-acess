@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexora - Next Generation AI Assistant</title>
+<link rel="icon" type="image/png" href="y.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0F1117;
+    color: #D1D5DB;
+    margin: 0;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+}
+
+/* Utility Classes */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #4A90E2, #B94AFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background-color: rgba(42, 42, 63, 0.7);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-30px) translateX(15px); }
+    50% { transform: translateY(-15px) translateX(30px); }
+    75% { transform: translateY(-30px) translateX(15px); }
+}
+
+input[type="email"]:focus, input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: #B94AFF;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    color: white;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: Arial, Helvetica, sans-serif, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(209, 209, 209);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #B94AFF;
+}
+
+.nav-button {
+    background: linear-gradient(to right, #4A90E2, #B94AFF);
+    color: white;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-button:hover {
+    opacity: 0.9;
+}
+
+.nav-hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.nav-hamburger i {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(42, 42, 63, 0.95);
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-hamburger {
+        display: block;
+    }
+
+    .nav-button {
+        margin-top: 20px;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    padding-top: 96px;
+    background-image: url('https://readdy.ai/api/search-image?query=A%20futuristic%20AI%20visualization%20with%20abstract%20digital%20particles%2C%20neural%20network%20connections%2C%20and%20flowing%20data%20streams.%20The%20image%20has%20a%20dark%20background%20with%20glowing%20blue%20and%20purple%20elements.%20The%20left%20side%20is%20darker%20and%20more%20subtle%20to%20allow%20text%20to%20be%20clearly%20visible%2C%20while%20the%20right%20side%20features%20more%20prominent%20AI%20visualization%20elements.%20The%20transition%20between%20left%20and%20right%20is%20seamless%20and%20natural.&width=1920&height=1080&seq=1&orientation=landscape');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #1A1A2F 36%, rgba(26, 26, 47, 0.6));
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.hero-content p {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 32px;
+    max-width: 600px;
+}
+
+.email-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    margin-bottom: 32px;
+}
+
+.email-form input {
+    background: transparent;
+    color: white;
+    padding: 12px 16px;
+    flex-grow: 1;
+    border: none;
+    font-size: 16px;
+}
+
+.email-form button {
+    background: linear-gradient(to right, #4A90E2, #B94AFF);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.email-form button:hover {
+    opacity: 0.9;
+}
+
+/* Feedback Modal */
+.feedback-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-modal-content {
+    backdrop-filter: blur(12px);
+    background-color: rgba(28, 31, 42, 0.6);
+    padding: 32px;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.feedback-modal-content h3 {
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.feedback-modal-content p {
+    color: #D1D5DB;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.feedback-text {
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #4B5563;
+    border-radius: 8px;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback-text:focus {
+    border-color: #B94AFF;
+    box-shadow: 0 0 8px rgba(185, 74, 255, 0.3);
+}
+
+.character-counter {
+    text-align: right;
+    color: #9CA3AF;
+    font-size: 12px;
+    margin-bottom: 24px;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.star {
+    font-size: 28px;
+    color: #4B5563;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.star:hover, .star:focus {
+    color: #A78BFA;
+    transform: scale(1.2);
+}
+
+.star.selected {
+    color: #B94AFF;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.feedback-modal-content button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.feedback-modal-content .submit-feedback {
+    background: linear-gradient(to right, #4A90E2, #B94AFF);
+    color: white;
+}
+
+.feedback-modal-content .cancel-feedback {
+    background-color: #4B5563;
+    color: white;
+}
+
+.feedback-modal-content button:hover {
+    opacity: 0.9;
+}
+
+.feedback-modal-content .close-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.feedback-modal-content .close-modal:hover {
+    color: white;
+}
+
+.feedback-modal-content .feedback-message {
+    color: #FF4A4A;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+    .feedback-modal-content {
+        padding: 24px;
+        max-width: 90%;
+    }
+
+    .feedback-modal-content h3 {
+        font-size: 22px;
+    }
+
+    .star {
+        font-size: 24px;
+    }
+
+    .feedback-text {
+        height: 120px;
+        max-width: none;
+    }
+
+    .feedback-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .feedback-modal-content button {
+        width: 100%;
+    }
+}
+
+/* About Section */
+.about-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0A0C11 40%, #1A1A2F 100%);
+    overflow: hidden;
+}
+
+.about-section .floating-particles {
+    z-index: 1;
+}
+
+.about-container {
+    max-width: 120Aq0px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.about-header h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: white;
+    position: relative;
+}
+
+.about-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #4A90E2, #B94AFF);
+    border-radius: 2px;
+}
+
+.about-header p {
+    color: #9CA3AF;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.about-text-card {
+    background: rgba(28, 31, 42, 0.9);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .about-text-card {
+        max-width: 45%;
+    }
+}
+
+.about-text-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-text-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(74, 144, 226, 0.1), rgba(185, 74, 255, 0.1));
+    z-index: -1;
+}
+
+.about-text-card h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.about-text-card p {
+    color: #D1D5DB;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.about-image-container {
+    max-width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .about-image-container {
+        max-width: 45%;
+    }
+}
+
+.about-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 66.67%; /* 3:2 Aspect Ratio (400/600) */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.about-image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.about-image-wrapper .image-default {
+    opacity: 1;
+}
+
+.about-image-wrapper .image-hover {
+    opacity: 0;
+    transform: scale(1.02);
+}
+
+.about-image-wrapper:hover .image-default {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+.about-image-wrapper:hover .image-hover {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.about-image-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.3), transparent);
+    z-index: -1;
+}
+
+.about-image-container::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(185, 74, 255, 0.3), transparent);
+    z-index: -1;
+}
+
+/* Code Snippets Section */
+.snippets-section {
+    padding: 80px 0;
+    background-color: #0A0C11;
+}
+
+.snippets-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.snippets-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.snippets-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.snippets-header p {
+    color: #9CA3AF;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.snippets-content {
+    background-color: #1C1F2A;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 896px;
+    margin: 0 auto;
+}
+
+.snippets-tabs {
+    display: flex;
+    border-bottom: 1px solid #2D3748;
+    padding: 4px;
+    background-color: #151821;
+}
+
+.snippets-tabs button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background-color: #B94AFF;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.snippets-body {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .snippets-body {
+        flex-direction: row;
+    }
+}
+
+.code-window {
+    background-color: #1A1A2F;
+    color: white;
+    padding: 24px;
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Hide scrollbar */
+}
+
+@media (min-width: 768px) {
+    .code-window {
+        width: 66.67%;
+    }
+}
+
+.code-window .copy-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #4B5563;
+    cursor: pointer;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.code-window .copy-button:hover {
+    background-color: #6B7280;
+}
+
+.code-window .copy-button i {
+    margin-right: 4px;
+    font-size: 14px;
+}
+
+.code-window pre {
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    margin: 0;
+    max-height: 500px;
+    overflow-y: auto; /* Allow scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.code-window pre::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.syntax-highlight .keyword {
+    color: #B94AFF;
+}
+
+.syntax-highlight .string {
+    color: #4A90E2;
+}
+
+.syntax-highlight .comment {
+    color: #6B7280;
+}
+
+.syntax-highlight .function {
+    color: #10B981;
+}
+
+.syntax-highlight .text-gray-500 {
+    color: #6B7280;
+}
+
+.snippets-description {
+    background-color: #F9FAFB;
+    padding: 24px;
+    width: 100%;
+    border-top: 1px solid #E5E7EB;
+}
+
+@media (min-width: 768px) {
+    .snippets-description {
+        width: 33.33%;
+        border-top: none;
+        border-left: 1px solid #E5E7EB;
+    }
+}
+
+.snippets-description h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1F2937;
+}
+
+.snippets-description p {
+    color: #4B5563;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.output-section {
+    margin-bottom: 16px;
+}
+
+.output-section h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.output-section div {
+    background-color: #F3F4F6;
+    padding: 12px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: #1F2937;
+}
+
+.snippets-description a {
+    background-color: #B94AFF;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.snippets-description a i {
+    margin-right: 4px;
+    font-size: 14px;
+}
+
+/* Call to Action Section */
+.cta-section {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+    background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20abstract%20background%20with%20flowing%20gradients%20in%20deep%20purple%20and%20electric%20blue%20colors.%20The%20image%20has%20a%20subtle%20digital%20pattern%20with%20soft%20geometric%20shapes%20and%20light%20particles.%20The%20design%20is%20clean%20and%20minimalist%20with%20ample%20space%20for%20text%20overlay.%20The%20overall%20aesthetic%20is%20futuristic%20and%20tech-oriented%20but%20elegant%20and%20sophisticated.&width=1920&height=600&seq=2&orientation=landscape');
+    background-size: cover;
+    background-position: center;
+}
+
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #1A1A2F 32%, rgba(26, 26, 47, 0.8));
+}
+
+.cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.cta-content {
+    max-width: 768px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+.cta-content .email-form {
+    margin: 0 auto;
+}
+
+.cta-content .terms {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}
+
+.cta-content .terms a {
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.cta-content .terms a:hover {
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #1A1A2F;
+    color: white;
+    padding: 64px 0 32px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.footer-section p {
+    color: #9CA3AF;
+    margin-bottom: 24px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #9CA3AF;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-links a {
+    color: #9CA3AF;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: white;
+}
+
+.social-links i {
+    font-size: 24px;
+}
+
+.footer-section .email-form input {
+    background-color: #1C1F2A;
+    border-radius: 4px 0 0 4px;
+}
+
+.footer-section .email-form button {
+    border-radius: 0 4px 4px 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-bottom p {
+    color: #9CA3AF;
+    font-size: 14px;
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-bottom-links a {
+    color: #9CA3AF;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: white;
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="glass-effect">
+<div class="nav-container">
+    <div class="nav-logo">
+        <span class="text-primary">Nexora AI</span>
+    </div>
+    <div class="nav-hamburger" onclick="toggleMenu()">
+        <i class="ri-menu-line"></i>
+    </div>
+    <div class="nav-links" id="nav-links">
+        <a href="#snippets">Learn AI</a>
+        <a href="#about">About</a>
+        <a href="#early-access" class="nav-button">Get Early Access</a>
+    </div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="hero-section">
+<div class="hero-overlay"></div>
+<div class="floating-particles">
+    <div class="particle" style="width: 30px; height: 30px; top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 20px; height: 20px; top: 30%; left: 80%; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 15px; height: 15px; top: 70%; left: 10%; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 25px; height: 25px; top: 50%; left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="width: 18px; height: 18px; top: 80%; left: 30%; animation-delay: 8s;"></div>
+</div>
+<div class="hero-container">
+<div class="hero-content">
+    <h1 class="gradient-text">Learn AI & Get Early Access to Aura</h1>
+    <p>Join the future of intelligence—learn the core concepts of AI, build real-world skills, and get exclusive early access to Aura, our powerful AI built to assist, learn, and evolve with you.</p>    
+    <form class="email-form" onsubmit="return false;">
+        <input type="email" id="hero-email" placeholder="Enter your email address" required>
+        <button type="submit">Try by email</button>
+    </form>
+    <p id="hero-message" class="text-white text-sm"></p>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="about-section">
+<div class="floating-particles">
+    <div class="particle" style="width: 25px; height: 25px; top: 15%; left: 10%; animation-delay: 1s;"></div>
+    <div class="particle" style="width: 20px; height: 20px; top: 25%; left: 85%; animation-delay: 3s;"></div>
+    <div class="particle" style="width: 30px; height: 30px; top: 60%; left: 20%; animation-delay: 5s;"></div>
+    <div class="particle" style="width: 15px; height: 15px; top: 80%; left: 70%; animation-delay: 7s;"></div>
+</div>
+<div class="about-container">
+<div class="about-header">
+    <h2>About Nexora & Aura</h2>
+    <p>Discover how Nexora and its AI assistant, Aura, are revolutionizing the way we learn, work, and innovate with AI technology.</p>
+</div>
+<div class="about-content">
+    <div class="about-text-card">
+        <h3>Our Mission</h3>
+        <p>At Nexora, we're committed to making AI accessible to everyone. Aura, our advanced AI assistant, is designed to empower users by simplifying complex tasks, providing actionable insights, and fostering a deeper understanding of artificial intelligence.</p>
+        <p>Whether you're a beginner learning AI concepts or a professional looking to streamline your workflow, Aura adapts to your needs, learns from your interactions, and evolves to provide personalized support.</p>
+    </div>
+    <div class="about-image-container">
+        <div class="about-image-wrapper">
+            <img class="image-default" src="https://readdy.ai/api/search-image?query=A%20futuristic%20AI%20assistant%20visual%20with%20a%20sleek%2C%20modern%20interface%20showing%20a%20digital%20avatar%20or%20holographic%20projection.%20The%20design%20is%20minimalist%20with%20glowing%20blue%20and%20purple%20elements%2C%20representing%20technology%20and%20innovation.%20The%20background%20is%20dark%20with%20subtle%20digital%20patterns.&width=600&height=400&seq=3&orientation=landscape" alt="Aura AI Assistant Default">
+            <img class="image-hover" src="https://readdy.ai/api/search-image?query=A%20futuristic%20AI%20interface%20with%20a%20glowing%20holographic%20display%20showing%20data%20visualizations%20and%20neural%20networks.%20The%20design%20is%20sleek%20and%20modern%2C%20with%20vibrant%20blue%20and%20purple%20hues%2C%20and%20a%20dark%20background%20with%20subtle%20digital%20patterns.&width=600&height=400&seq=4&orientation=landscape" alt="Aura AI Assistant Hover">
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!-- Code Snippets Section -->
+<section id="snippets" class="snippets-section">
+<div class="snippets-container">
+<div class="snippets-header">
+    <h2>Learn AI</h2>
+    <p>Learn Concepts of AI Using Python </p>
+</div>
+<div class="snippets-content">
+    <!-- Code Category Tabs -->
+    <div class="snippets-tabs">
+        <button>Python</button>
+    </div>
+    <!-- Code Window -->
+    <div class="snippets-body">
+        <div class="code-window">
+            <div class="copy-button" onclick="copyCode()">
+                <i class="ri-file-copy-line"></i> Copy
+            </div>
+            <div class="syntax-highlight">
+                <pre>
+<span class="text-gray-500">1</span> <span class="keyword">import</span> json
+<span class="text-gray-500">2</span> <span class="keyword">import</span> os
+<span class="text-gray-500">3</span> 
+<span class="text-gray-500">4</span> KNOWLEDGE_BASE_FILE = os.path.join(os.getcwd(), <span class="string">"chatbot_knowledge.json"</span>)
+<span class="text-gray-500">5</span> 
+<span class="text-gray-500">6</span> <span class="comment"># Load or initialize the knowledge base</span>
+<span class="text-gray-500">7</span> <span class="keyword">def</span> <span class="function">load_knowledge</span>():
+<span class="text-gray-500">8</span>     <span class="keyword">if</span> os.path.exists(KNOWLEDGE_BASE_FILE):
+<span class="text-gray-500">9</span>         <span class="keyword">if</span> os.path.getsize(KNOWLEDGE_BASE_FILE) > 0:
+<span class="text-gray-500">10</span>             <span class="keyword">try</span>:
+<span class="text-gray-500">11</span>                 <span class="keyword">with</span> open(KNOWLEDGE_BASE_FILE, <span class="string">"r"</span>) <span class="keyword">as</span> file:
+<span class="text-gray-500">12</span>                     data = json.load(file)
+<span class="text-gray-500">13</span>                     <span class="built_in">print</span>(<span class="string">"[✓] Loaded existing knowledge base."</span>)
+<span class="text-gray-500">14</span>                     <span class="keyword">return</span> data
+<span class="text-gray-500">15</span>             <span class="keyword">except</span> json.JSONDecodeError:
+<span class="text-gray-500">16</span>                 <span class="built_in">print</span>(<span class="string">"[!] JSON file was corrupt. Starting fresh."</span>)
+<span class="text-gray-500">17</span>     <span class="built_in">print</span>(<span class="string">"[✓] No previous knowledge base found. Starting fresh."</span>)
+<span class="text-gray-500">18</span>     <span class="keyword">return</span> {}
+<span class="text-gray-500">19</span> 
+<span class="text-gray-500">20</span> <span class="comment"># Save knowledge to file</span>
+<span class="text-gray-500">21</span> <span class="keyword">def</span> <span class="function">save_knowledge</span>(knowledge_base):
+<span class="text-gray-500">22</span>     <span class="keyword">with</span> open(KNOWLEDGE_BASE_FILE, <span class="string">"w"</span>) <span class="keyword">as</span> file:
+<span class="text-gray-500">23</span>         json.dump(knowledge_base, file, indent=4)
+<span class="text-gray-500">24</span>     <span class="built_in">print</span>(<span class="string">"[✓] Knowledge saved to"</span>, KNOWLEDGE_BASE_FILE)
+<span class="text-gray-500">25</span> 
+<span class="text-gray-500">26</span> <span class="comment"># Get or teach a response</span>
+<span class="text-gray-500">27</span> <span class="keyword">def</span> <span class="function">get_response</span>(user_input, knowledge_base):
+<span class="text-gray-500">28</span>     user_input = user_input.lower()
+<span class="text-gray-500">29</span>     <span class="keyword">if</span> user_input <span class="keyword">in</span> knowledge_base:
+<span class="text-gray-500">30</span>         <span class="keyword">return</span> knowledge_base[user_input]
+<span class="text-gray-500">31</span>     <span class="keyword">else</span>:
+<span class="text-gray-500">32</span>         response = input(<span class="string">f"I don't know how to respond to '{user_input}'. How should I reply? "</span>)
+<span class="text-gray-500">33</span>         knowledge_base[user_input] = response
+<span class="text-gray-500">34</span>         save_knowledge(knowledge_base)
+<span class="text-gray-500">35</span>         <span class="keyword">return</span> response
+<span class="text-gray-500">36</span> 
+<span class="text-gray-500">37</span> <span class="comment"># Main chatbot loop</span>
+<span class="text-gray-500">38</span> <span class="keyword">def</span> <span class="function">chat</span>():
+<span class="text-gray-500">39</span>     <span class="built_in">print</span>(<span class="string">"🤖 Chatbot started. Type 'exit' to quit."</span>)
+<span class="text-gray-500">40</span>     knowledge_base = load_knowledge()
+<span class="text-gray-500">41</span>     <span class="keyword">while</span> <span class="keyword">True</span>:
+<span class="text-gray-500">42</span>         user_input = input(<span class="string">"You: "</span>)
+<span class="text-gray-500">43</span>         <span class="keyword">if</span> user_input.lower() == <span class="string">"exit"</span>:
+<span class="text-gray-500">44</span>             <span class="built_in">print</span>(<span class="string">"🤖 Goodbye!"</span>)
+<span class="text-gray-500">45</span>             <span class="keyword">break</span>
+<span class="text-gray-500">46</span>         reply = get_response(user_input, knowledge_base)
+<span class="text-gray-500">47</span>         <span class="built_in">print</span>(<span class="string">f"Bot: {reply}"</span>)
+<span class="text-gray-500">48</span> 
+<span class="text-gray-500">49</span> <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+<span class="text-gray-500">50</span>     chat()
+</pre>     
+            </div>
+        </div>
+        <div class="snippets-description">
+            <h3>What You'll Get:</h3>
+            <p>~ Python-based script</p>
+            <p>~Lightweight knowledge base stored in JSON</p>
+            <p>~Responds, remembers, and evolves from your inputs</p>
+            <p>~Ideal for beginners learning AI logic</p>
+            <p>~A txt file to learn and understand code</p>
+            <div class="output-section">
+                <h4>Output:</h4>
+                <div>
+                    Chatbot started. Type Nils' to quit.
+                    [✓] Loaded existing knowledge base.
+                    You: HI 
+                    I don't know how to respond to 'hi '. How should I reply? hello!
+                    [✓] Knowledge saved to C:\Users\pubgh\Desktop\abc - Copy\chatbot_knowledge.json
+                    Bot: hello!  
+                </div>
+            </div>
+            <a href="Learn AI.zip">
+                <i class="ri-download-line"></i> Download
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section id="early-access" class="cta-section">
+<div class="cta-overlay"></div>
+<div class="cta-container">
+<div class="cta-content">
+    <h2>Try Aura early access</h2>
+    <p>Be the first to experience tomorrow's intelligence—sign up now for exclusive early access to Aura.</p>
+    <form class="email-form" onsubmit="return false;">
+        <input type="email" id="cta-email" placeholder="Enter your email address" required>
+        <button type="submit">Get Early Access</button>
+    </form>
+    <p id="cta-message" class="text-white text-sm"></p>
+    <p class="terms">By signing up, you agree to our <a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+</div>
+</div>
+</section>
+<!-- Feedback Modal -->
+<div class="feedback-modal" id="feedback-modal" role="dialog" aria-labelledby="feedback-title" aria-modal="true">
+<div class="feedback-modal-content">
+    <span class="close-modal" onclick="closeFeedbackModal()" aria-label="Close feedback modal">×</span>
+    <h3 id="feedback-title">Share Your Feedback</h3>
+    <p>We value your input! Let us know how we can improve and rate your experience.</p>
+    <textarea class="feedback-text" id="feedback-text" placeholder="Enter your feedback (minimum 10 characters)" aria-label="Feedback text" maxlength="500"></textarea>
+    <div class="character-counter" id="character-counter">0/500</div>
+    <div class="star-rating" role="radiogroup" aria-label="Rate your experience">
+        <span class="star" data-value="1" role="radio" aria-checked="false" tabindex="0" aria-label="1 star">★</span>
+        <span class="star" data-value="2" role="radio" aria-checked="false" tabindex="-1" aria-label="2 stars">★</span>
+        <span class="star" data-value="3" role="radio" aria-checked="false" tabindex="-1" aria-label="3 stars">★</span>
+        <span class="star" data-value="4" role="radio" aria-checked="false" tabindex="-1" aria-label="4 stars">★</span>
+        <span class="star" data-value="5" role="radio" aria-checked="false" tabindex="-1" aria-label="5 stars">★</span>
+    </div>
+    <div class="feedback-buttons">
+        <button class="submit-feedback" onclick="submitFeedback()">Submit Feedback</button>
+        <button class="cancel-feedback" onclick="closeFeedbackModal()">Cancel</button>
+    </div>
+    <p id="feedback-message" class="feedback-message" aria-live="polite"></p>
+</div>
+</div>
+<!-- Footer -->
+<footer>
+<div class="footer-container">
+<div class="footer-grid">
+    <div class="footer-section">
+        <a href="#" class="text-2xl font-['Pacifico'] mb-6 inline-block">Nexora</a>
+        <p>Aura is the next generation artificial intelligence assistant designed to help you work smarter, not harder.</p>
+        <div class="social-links">
+        </div>
+    </div>
+    <div class="footer-section">
+        <h3>Company</h3>
+        <ul>
+            <li><a href="https://nexora-com.onrender.com/index.html#about" target="_blank" rel="noopener noreferrer">About Company</a></li>
+            <li><a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+            <li><a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Terms & Conditions</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Stay updated with the latest features and releases.</p>
+        <form class="email-form" onsubmit="return false;">
+            <input type="email" id="footer-email" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <p id="footer-message" class="text-white text-sm"></p>
+    </div>
+</div>
+<div class="footer-bottom">
+    <p>© 2025 Nexora. All rights reserved.</p>
+    <div class="footer-bottom-links">
+        <a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Terms & Conditions</a>
+        <a href="https://nexora-com.onrender.com/blog.html#privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="#" onclick="openFeedbackModal()">Feedback</a>
+    </div>
+</div>
+</div>
+</footer>
+<script>
+// DOM Ready Handler
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Initialize star rating for feedback modal
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', handleStarRating);
+        star.addEventListener('keydown', handleStarKeydown);
+    });
+
+    // Update character counter on input
+    const feedbackText = document.getElementById('feedback-text');
+    feedbackText.addEventListener('input', updateCharacterCounter);
+});
+
+// Toggle mobile menu
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('active');
+    const hamburger = document.querySelector('.nav-hamburger i');
+    hamburger.classList.toggle('ri-menu-line');
+    hamburger.classList.toggle('ri-close-line');
+}
+
+// Email submission
+function submitEmail(emailInputId, messageId) {
+    const emailInput = document.getElementById(emailInputId);
+    const messageElement = document.getElementById(messageId);
+    const email = emailInput.value.trim();
+
+    if (!email) {
+        messageElement.textContent = 'Please enter a valid email address.';
+        messageElement.style.color = '#FF4A4A';
+        return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        messageElement.textContent = 'Please enter a valid email address.';
+        messageElement.style.color = '#FF4A4A';
+        return;
+    }
+
+    // Send email to backend
+    fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.userId) {
+            // Store userId in localStorage
+            localStorage.setItem('userId', data.userId);
+            localStorage.setItem('userEmail', email);
+            
+            // Hide all email forms
+            const emailForms = document.querySelectorAll('.email-form');
+            emailForms.forEach(form => {
+                form.style.display = 'none';
+            });
+
+            // Show success message and navigation button
+            messageElement.innerHTML = `
+                <div style="text-align: center;">
+                    <p style="color: #4CAF50; margin-bottom: 15px;">Email registered successfully!</p>
+                    <a href="/aura.html" target="_blank" class="nav-button" style="display: inline-block; text-decoration: none;">
+                        Open Aura Interface
+                    </a>
+                </div>
+            `;
+            messageElement.style.color = '#4CAF50';
+        } else {
+            throw new Error('Invalid response from server');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        messageElement.textContent = 'An error occurred. Please try again.';
+        messageElement.style.color = '#FF4A4A';
+        // Clear any existing userId in case of error
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userEmail');
+    });
+}
+
+// Check if user is already registered on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+        // Verify user still exists in database
+        fetch(`/api/chat/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    // If user not found, clear localStorage and show registration form
+                    localStorage.removeItem('userId');
+                    localStorage.removeItem('userEmail');
+                    const emailForms = document.querySelectorAll('.email-form');
+                    emailForms.forEach(form => {
+                        form.style.display = 'block';
+                    });
+                    return;
+                }
+                // User exists, show navigation button
+                const emailForms = document.querySelectorAll('.email-form');
+                emailForms.forEach(form => {
+                    form.style.display = 'none';
+                });
+                const messageElements = document.querySelectorAll('[id$="-message"]');
+                messageElements.forEach(element => {
+                    element.innerHTML = `
+                        <div style="text-align: center;">
+                            <a href="/aura.html" target="_blank" class="nav-button" style="display: inline-block; text-decoration: none;">
+                                Open Aura Interface
+                            </a>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error('Error verifying user:', error);
+                // On error, clear localStorage and show registration form
+                localStorage.removeItem('userId');
+                localStorage.removeItem('userEmail');
+                const emailForms = document.querySelectorAll('.email-form');
+                emailForms.forEach(form => {
+                    form.style.display = 'block';
+                });
+            });
+    }
+});
+
+// Feedback handling
+let currentRating = 0;
+
+function openFeedbackModal() {
+    const feedbackModal = document.getElementById('feedback-modal');
+    feedbackModal.style.display = 'flex';
+    resetFeedbackForm();
+    // Focus on the textarea for accessibility
+    document.getElementById('feedback-text').focus();
+}
+
+function closeFeedbackModal() {
+    const feedbackModal = document.getElementById('feedback-modal');
+    feedbackModal.style.display = 'none';
+    resetFeedbackForm();
+}
+
+function resetFeedbackForm() {
+    currentRating = 0;
+    document.getElementById('feedback-text').value = '';
+    updateCharacterCounter();
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.classList.remove('selected');
+        star.setAttribute('aria-checked', 'false');
+        star.setAttribute('tabindex', star.getAttribute('data-value') === '1' ? '0' : '-1');
+    });
+    document.getElementById('feedback-message').textContent = '';
+}
+
+function handleStarRating(event) {
+    const rating = parseInt(event.currentTarget.getAttribute('data-value'));
+    currentRating = rating;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= rating) {
+            star.classList.add('selected');
+            star.setAttribute('aria-checked', 'true');
+        } else {
+            star.classList.remove('selected');
+            star.setAttribute('aria-checked', 'false');
+        }
+        star.setAttribute('tabindex', starValue === rating ? '0' : '-1');
+    });
+}
+
+function handleStarKeydown(event) {
+    const star = event.currentTarget;
+    const rating = parseInt(star.getAttribute('data-value'));
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleStarRating(event);
+    } else if (event.key === 'ArrowRight' && rating < 5) {
+        event.preventDefault();
+        document.querySelector(`.star[data-value="${rating + 1}"]`).focus();
+    } else if (event.key === 'ArrowLeft' && rating > 1) {
+        event.preventDefault();
+        document.querySelector(`.star[data-value="${rating - 1}"]`).focus();
+    }
+}
+
+function updateCharacterCounter() {
+    const feedbackText = document.getElementById('feedback-text');
+    const counter = document.getElementById('character-counter');
+    const length = feedbackText.value.length;
+    counter.textContent = `${length}/500`;
+    if (length > 400) {
+        counter.style.color = '#FF4A4A';
+    } else {
+        counter.style.color = '#9CA3AF';
+    }
+}
+
+function submitFeedback() {
+    const feedbackText = document.getElementById('feedback-text').value.trim();
+    const feedbackMessage = document.getElementById('feedback-message');
+
+    if (currentRating === 0) {
+        feedbackMessage.textContent = 'Please select a star rating.';
+        return;
+    }
+
+    if (feedbackText.length < 10) {
+        feedbackMessage.textContent = 'Feedback must be at least 10 characters long.';
+        return;
+    }
+
+    // Simulate API call (replace with actual endpoint)
+    console.log('Feedback Submitted:', { rating: currentRating, feedback: feedbackText });
+    feedbackMessage.textContent = 'Thank you for your feedback!';
+    feedbackMessage.style.color = '#4A90E2';
+    setTimeout(() => {
+        closeFeedbackModal();
+    }, 2000);
+}
+
+// Copy code to clipboard with fallback
+function copyCode() {
+    const code = `import json
+import os
+
+# Use an absolute path to ensure the file is created in the correct location
+KNOWLEDGE_BASE_FILE = os.path.join(os.getcwd(), "chatbot_knowledge.json")
+
+# Load or initialize the knowledge base
+def load_knowledge():
+    if os.path.exists(KNOWLEDGE_BASE_FILE):
+        if os.path.getsize(KNOWLEDGE_BASE_FILE) > 0:
+            try:
+                with open(KNOWLEDGE_BASE_FILE, "r") as file:
+                    data = json.load(file)
+                    print("[✓] Loaded existing knowledge base.")
+                    return data
+            except json.JSONDecodeError:
+                print("[!] JSON file was corrupt. Starting fresh.")
+    print("[✓] No previous knowledge base found. Starting fresh.")
+    return {}
+
+# Save knowledge to file
+def save_knowledge(knowledge_base):
+    with open(KNOWLEDGE_BASE_FILE, "w") as file:
+        json.dump(knowledge_base, file, indent=4)
+    print("[✓] Knowledge saved to", KNOWLEDGE_BASE_FILE)
+
+# Get or teach a response
+def get_response(user_input, knowledge_base):
+    user_input = user_input.lower()
+    if user_input in knowledge_base:
+        return knowledge_base[user_input]
+    else:
+        response = input(f"I don't know how to respond to '{user_input}'. How should I reply? ")
+        knowledge_base[user_input] = response
+        save_knowledge(knowledge_base)
+        return response
+
+# Main chatbot loop
+def chat():
+    print("🤖 Chatbot started. Type 'exit' to quit.")
+    knowledge_base = load_knowledge()
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "exit":
+            print("🤖 Goodbye!")
+            break
+        reply = get_response(user_input, knowledge_base)
+        print(f"Bot: {reply}")
+
+if __name__ == "__main__":
+    chat()`;
+
+    try {
+        // Attempt to use the Clipboard API
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                console.error('Clipboard API failed:', err);
+                fallbackCopyText(code);
+            });
+        } else {
+            // Fallback if Clipboard API is not available
+            fallbackCopyText(code);
+        }
+    } catch (err) {
+        console.error('Failed to copy code:', err);
+        alert('Failed to copy code. Please copy it manually.');
+    }
+}
+
+// Fallback function for copying text
+function fallbackCopyText(text) {
+    try {
+        // Create a temporary textarea
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed'; // Prevent scrolling to bottom of page in some browsers
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        // Attempt to copy
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        if (successful) {
+            alert('Code copied to clipboard!');
+        } else {
+            throw new Error('Copy command failed');
+        }
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+        alert('Failed to copy code. Please copy it manually.');
+    }
+}
+
+// Add form submit handlers
+document.addEventListener('DOMContentLoaded', () => {
+    const emailForms = document.querySelectorAll('.email-form');
+    emailForms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = form.querySelector('input[type="email"]');
+            const messageElement = form.nextElementSibling;
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to register');
+                }
+
+                const data = await response.json();
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('userEmail', email);
+
+                // Hide all email forms
+                emailForms.forEach(f => {
+                    f.style.display = 'none';
+                });
+
+                // Show success message and redirect button
+                if (messageElement) {
+                    messageElement.innerHTML = `
+                        <div style="text-align: center;">
+                            <p style="color: #4CAF50; margin-bottom: 15px;">Registration successful!</p>
+                            <button onclick="window.location.href='/aura.html'" class="nav-button" style="display: inline-block;">
+                                Continue to Aura Interface
+                            </button>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Failed to register. Please try again.');
+            }
+        });
+    });
+
+    // Handle feedback submission
+    const feedbackForm = document.querySelector('.feedback-modal-content');
+    if (feedbackForm) {
+        const stars = feedbackForm.querySelectorAll('.star');
+        let currentRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-value'));
+                currentRating = rating;
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-value')) <= rating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+
+        document.querySelector('.submit-feedback').addEventListener('click', async () => {
+            const feedbackText = document.getElementById('feedback-text').value.trim();
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                alert('Please register first');
+                return;
+            }
+
+            if (currentRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            if (feedbackText.length < 10) {
+                alert('Please provide more detailed feedback (minimum 10 characters)');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/feedback/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        rating: currentRating,
+                        comment: feedbackText
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit feedback');
+                }
+
+                alert('Thank you for your feedback!');
+                closeFeedbackModal();
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                alert('Failed to submit feedback. Please try again.');
+            }
+        });
+    }
+
+    // Create particles
+    createParticles();
+});
+</script>
+</body>
+</html>
