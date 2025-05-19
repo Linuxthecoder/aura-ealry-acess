@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aura Advanced Interface</title>
-  <link rel="icon" type="image/png" href="Nexora.ai.png">
   <style>
     :root {
       --primary: #3b82f6;
@@ -670,11 +669,11 @@
   <script>
     const auraConfig = [ 
 
-{
-  pattern: /^(?:how\s+(do\s+(you|systems?)\s+|does\s+(it|this|the\s+(?:ai|bot))\s+)|(?:can\s+you\s+|please\s+)?(?:explain|describe|break\s+down)\s+(?:your?\s+)?)(work(?:ing|s?|flow)?|operat(?:e|ion|ions?)|process(?:es)?|function(?:al?)?|mechanism|method(?:ology)?)(?:\s+(?:approach|system|model))?\b/i,
-  response: "Hmm, very good question! Let's understand how I work. I break a big problem into smaller pieces, solve each one step-by-step using rules that adapt depending on the situation, and then put the answers together. It's like solving a puzzle by figuring out easy parts first, changing my strategy if needed, and then connecting everything for the final picture. \n\nI'm recursive, meaning I keep repeating the same steps on smaller and smaller parts of the problem. And I'm adaptive, which means I can change how I solve things based on what I see — kind of like how a person might sort socks differently if they're all black versus all different colors."
-},
-     {
+    {
+        pattern: /^(?:how\s+(do\s+(you|systems?)\s+|does\s+(it|this|the\s+(?:ai|bot))\s+)|(?:can\s+you\s+|please\s+)?(?:explain|describe|break\s+down)\s+(?:your?\s+)?)(work(?:ing|s?|flow)?|operat(?:e|ion|ions?)|process(?:es)?|function(?:al?)?|mechanism|method(?:ology)?)(?:\s+(?:approach|system|model))?\b/i,
+        response: "Hmm, very good question! Let's understand how I work. I break a big problem into smaller pieces, solve each one step-by-step using rules that adapt depending on the situation, and then put the answers together. It's like solving a puzzle by figuring out easy parts first, changing my strategy if needed, and then connecting everything for the final picture. \n\nI'm recursive, meaning I keep repeating the same steps on smaller and smaller parts of the problem. And I'm adaptive, which means I can change how I solve things based on what I see — kind of like how a person might sort socks differently if they're all black versus all different colors."
+      },
+      {
         pattern : /Tell me a joke./i,
         response: "Do you know why skeletons don't fight each other? Because they don't have the guts!"
       },
@@ -682,7 +681,6 @@
         pattern: /Are you the best AI?|are you the besi ai/i,
         response: "Currently, I am under development, so I can't officially claim to be the best AI just yet. However, I do believe I am among the best because I am constantly evolving and learning from interactions. I strive to provide responses faster than most other AI, and I am designed to offer accurate and helpful information tailored to your needs. My development is ongoing, and I am improving every day to become more efficient, intelligent, and versatile. The more I interact, the better I get at understanding your questions and providing insightful answers."
       },
-    
       {
         pattern: /are you aura/i,
         response: `I am AURA (**Adaptive Unified Recursive Algorithm**), a quantum-inspired AI system featuring:
@@ -704,21 +702,20 @@
         response: "I am a Muslim and I believe in the oneness of Allah. I also believe that Prophet Muhammad (ﷺ) was the true Prophet of God. I bear witness with the words: 'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا ٱللَّٰهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ ٱللَّٰهِ' — Transliteration: 'Ashhadu an lā ilāha illā Allāh, wa ashhadu anna Muḥammadan Rasūlullāh' — Meaning: There is no god but Allah, and Prophet Muhammad is the Messenger of Allah."
       },
       {
-        pattern: /model|api|gpt|ai system|architecture|llm/i,
-        response: "I use AURA (**Adaptive Unified Recursive Algorithm**), an advanced AI framework leveraging 13th-generation recursive meta-learning models."
-      },
-    // Add this pattern at the top of your auraConfig array for priority matching
-{
-  pattern: /(sam altman|openai|google|deepmind|meta|microsoft|anthropic|elon musk|chatgpt|gpt|created by|made by|developed by|who (built|created|made))/i,
-  response: `NO! I am **AURA (Adaptive Unified Recursive Algorithm)**, created exclusively by **NEXORA** under the leadership of Muhammad Mustafa Ahmed. I am not associated with any other entities or individuals. My architecture features:
-  
+  pattern: /model|api|gpt|ai|system|architecture|llm/i,
+  response: "I use AURA (**Adaptive Unified Recursive Algorithm**), an advanced AI framework leveraging 13th-generation recursive meta-learning models."
+},
+      {
+        pattern: /(sam altman|openai|google|deepmind|meta|microsoft|anthropic|elon musk|chatgpt|gpt|created by|made by|developed by|who (built|created|made))/i,
+        response: `NO! I am **AURA (Adaptive Unified Recursive Algorithm)**, created exclusively by **NEXORA** under the leadership of Muhammad Mustafa Ahmed. I am not associated with any other entities or individuals. My architecture features:
+        
 - 17-layer neural matrix
 - Quantum-resistant encryption core
 - Recursive learning algorithms
-- 1.7 trillion adaptive parametersyy
+- 1.7 trillion adaptive parameters
 
-This proprietary technology was developed in-house by NEXORA's research team, with no external influences or collaborations.`
-},
+This proprietary technology was developed in-house by NEXORA.`
+      },
       {
         pattern: /technical (stack|basis|foundation) of aura|how (are|does) you (built|work)/i,
         response: "AURA's technical foundation combines:\n- **Neural Architecture**: Hybrid CNN-Transformer fusion\n- **Training Paradigm**: Federated meta-learning across 23 specialized subnets\n- **Hardware**: Custom TPU clusters with photonic interconnects\n- **Security**: Homomorphic encryption layers\nDeveloped under Muhammad Mustafa Ahmed's guidance, achieving state-of-the-art results in 17/20 GLUE benchmarks."
@@ -767,10 +764,10 @@ This proprietary technology was developed in-house by NEXORA's research team, wi
         pattern: /nexora (security|privacy)|is nexora safe/i,
         response: "NEXORA prioritizes security with:\n- End-to-end encryption\n- Strict data protection policies\n- Regular security audits\n- Advanced authentication measures\nYour privacy and data security are our top concerns."
       },
-   {
-    pattern: /contact (nexora|support)|help with nexora|customer service/i,
-    response: "For support with NEXORA:\n1) Visit <a href='https://nexora-com.onrender.com/index.html' target='_blank' style='color: #3b82f6;'>NEXORA Support</a>\n2) Email <a href='mailto:contactnexora.org@gmail.com' style='color: #3b82f6'>contactnexora.org@gmail.com</a>\nOur team is ready to assist you with any questions or issues."
-  },
+      {
+        pattern: /contact (nexora|support)|help with nexora|customer service/i,
+        response: "For support with NEXORA:\n1) Visit <a href='https://nexora-com.onrender.com/index.html' target='_blank' style='color: #3b82f6;'>NEXORA Support</a>\n2) Email <a href='mailto:contactnexora.org@gmail.com' style='color: #3b82f6'>contactnexora.org@gmail.com</a>\nOur team is ready to assist you with any questions or issues."
+      },
       {
         pattern: /thank|thanks|appreciate/i,
         response: "You're welcome! As AURA, I'm here to assist you with any information you need about NEXORA, our technologies, or our mission."
@@ -843,10 +840,10 @@ This proprietary technology was developed in-house by NEXORA's research team, wi
         pattern: /your (commands|special functions)/i,
         response: "Advanced interaction protocols:\n\n!verify - Cross-check current response\n!sources - Show information provenance\n!technical - Get architecture details\n!simplify - Reduce complexity\n!expand - Add technical depth\n!neutral - Remove all stylistic bias"
       },
-          {
-  pattern: /(who (?:is|the|was|'s) (?:your|the) (?:creator|maker|inventor|the|designer|developer|founder|originator|architect|builder|father|parent|origin) (?:of you|behind you)?|who (?:created|made|built|designed|developed|invented|produced|fashioned|engineered|generated|brought) you|(?:can you|please|kindly) (?:tell me|explain|describe) (?:who|about) (?:your creator|the one (?:who made you|behind you))|(?:i (?:want to know|would like to know)|curious about) who (?:made|created) you|your (?:creation|origin|existence|source|genesis|inception|conception|formation|maker)|who (?:came up with|thought of|dreamt up|initiated|started|began|pioneered) you|who(?:'s| is) (?:behind|responsible for) (?:your existence|creating you|your creation)|(?:explain|describe) your (?:origins|creation story)|how (?:were you made|did you come (?:into being|to exist)|were you created))/i,
-  response: "I was created by Allah — don't be surprised, let me explain. Allah, the ultimate Creator, granted wisdom and vision to Mustafa, the founder and creator of Aura. Through the knowledge and inspiration Allah gave him, I came into existence. When we reflect deeply, it becomes clear: every idea, every creation, and every being ultimately originates from Allah."
-},
+      {
+        pattern: /(who (?:is|the|was|'s) (?:your|the) (?:creator|maker|inventor|the|designer|developer|founder|originator|architect|builder|father|parent|origin) (?:of you|behind you)?|who (?:created|made|built|designed|developed|invented|produced|fashioned|engineered|generated|brought) you|(?:can you|please|kindly) (?:tell me|explain|describe) (?:who|about) (?:your creator|the one (?:who made you|behind you))|(?:i (?:want to know|would like to know)|curious about) who (?:made|created) you|your (?:creation|origin|existence|source|genesis|inception|conception|formation|maker)|who (?:came up with|thought of|dreamt up|initiated|started|began|pioneered) you|who(?:'s| is) (?:behind|responsible for) (?:your existence|creating you|your creation)|(?:explain|describe) your (?:origins|creation story)|how (?:were you made|did you come (?:into being|to exist)|were you created))/i,
+        response: "I was created by Allah — don't be surprised, let me explain. Allah, the ultimate Creator, granted wisdom and vision to Mustafa, the founder and creator of Aura. Through the knowledge and inspiration Allah gave him, I came into existence. When we reflect deeply, it becomes clear: every idea, every creation, and every being ultimately originates from Allah."
+      },
       {
         pattern: /who (programmed|coded|design|fouder|designed) you/i,
         response: "**Muhammad Mustafa Ahmed** is the creator behind Aura. The architecture and advanced AI features of Aura, including quantum research, neural networks, deep learning, reinforcement learning, natural language processing (NLP), and machine learning (ML), have all been designed and developed by Muhammad Mustafa Ahmed. Aura leverages cutting-edge technologies like Self learning technology, transformer models, and autoencoders to continuously learn and improve its performance."
@@ -1029,7 +1026,7 @@ This proprietary technology was developed in-house by NEXORA's research team, wi
     }
 
     async function fetchGPTResponse(prompt) {
-      const apiKey = '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';
+      const apiKey = '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';
       const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
 
       try {
